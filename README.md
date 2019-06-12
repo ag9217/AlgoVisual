@@ -1,2 +1,2 @@
 # AlgoVisual
-Algorithm visualisation
+Algorithm visualisation in C++ with SFML

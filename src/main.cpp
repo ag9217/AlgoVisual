@@ -2,69 +2,38 @@
 #include <ctime>
 #include <cstdlib>
 #include <stdio.h>
+#include <vector>
 
 //funcion prototypes
-void randomizer(int* array, int n);
-void print(int* array, int n);
-void BubbleSort(int *array, int n);
+void randomizer(std::vector<int>& array, int n);
+void print(std::vector<int>& array);
 
 int main()
 {
-    int array[9];
+
+   std::vector<int> array;
 
    randomizer(array, 9);
-   print(array, 9);
-   BubbleSort(array, 9);
-   print(array, 9);
+   print(array);
 
    return 0;
 }
 
-void randomizer(int* array, int n)
+void randomizer(std::vector<int>& array, int n)
 {
    srand(time(0));
 
    //randomiser
    for(int i = 0; i < n; i++)
    {
-      array[i] = rand() % 10 + 1;
+      array.push_back(rand() % 10 + 1);
    }
 }
 
-void print(int *array, int n)
+void print(std::vector<int>& array)
 {
-
-   std::cout << "[";
-
-   for(int i = 0; i < n; i++)
+   for(int i = 0; i < array.size(); i++)
    {
-      if(i < n - 1)
-      {
-         std::cout << array[i] << ",";
-      }
-      else
-      {
-         std::cout << array[i] << "]" << std::endl;
-      }
+      std::cout << array[i] << std::endl;
    }
 }
-
-void BubbleSort(int *array, int n) {
-  bool swapped = true;
-  int j = 0;
-  int temp;
- 
-  while (swapped) {
-    swapped = false;
-    j++;
-    for (int i = 0; i < n - j; ++i) {
-      if (array[i] > array[i + 1]) {
-        temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-        swapped = true;
-      }
-    }
-  }
-}
- 

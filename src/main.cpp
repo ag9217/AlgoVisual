@@ -8,6 +8,8 @@
 void randomizer(std::vector<int>& array, int n);
 void print(std::vector<int>& array);
 void BubbleSort(std::vector<int>& array);
+void SelectionSort(std::vector<int>& array);
+void swap(int *xp, int *yp);
 
 int main()
 {
@@ -15,7 +17,8 @@ int main()
 
    randomizer(array, 9);
    print(array);
-   BubbleSort(array);
+   SelectionSort(array);
+   std::cout << "done" << std::endl;
    print(array);
 
    return 0;
@@ -35,13 +38,16 @@ void randomizer(std::vector<int>& array, int n)
 
 void print(std::vector<int>& array) //print array
 {
-   for(int i = 0; i < array.size(); i++)
+   std::cout << "[";
+   for(int i = 0; i < array.size() - 2; i++)
    {
-      std::cout << array[i] << std::endl;
+      std::cout << array[i] << ",";
    }
+   std::cout << array[array.size()-1] << "]" << std::endl;
 }
 
 //-------------ALGORITHMS-----------------
+//Bubble Sort
 void BubbleSort(std::vector<int>& array) {
   bool swapped = true;
   int j = 0;
@@ -59,4 +65,32 @@ void BubbleSort(std::vector<int>& array) {
       }
     }
   }
+}
+
+//Selection Sort
+void SelectionSort(std::vector<int>& array)
+{
+   int min_ind;
+
+   for(int i = 0; i < array.size() - 1; i++)
+   {
+      //finding minimum value in unsorted vector
+      min_ind = i;
+      for(int j = i+1; j < array.size(); j++)
+      {
+         if(array[j] < array[min_ind])
+         {
+            min_ind = j;
+         }
+         //swap
+         swap(&array[min_ind], &array[i]);
+      }
+   }
+}
+
+void swap(int *xp, int *yp)
+{
+   int temp = *xp;
+   *xp = *yp;
+   *yp = temp;
 }

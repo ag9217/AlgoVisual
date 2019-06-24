@@ -40,6 +40,7 @@ void print(std::vector<int>& array)
    }
 }
 
+//-------------ALGORITHMS-----------------
 void BubbleSort(std::vector<int>& array) {
   bool swapped = true;
   int j = 0;

@@ -21,9 +21,10 @@ int main()
    return 0;
 }
 
+//function that randomises and sets the size of the vector
 void randomizer(std::vector<int>& array, int n)
 {
-   srand(time(0));
+   srand(time(0)); //seed depends on current time
 
    //randomiser
    for(int i = 0; i < n; i++)

@@ -33,7 +33,7 @@ void randomizer(std::vector<int>& array, int n)
    }
 }
 
-void print(std::vector<int>& array)
+void print(std::vector<int>& array) //print array
 {
    for(int i = 0; i < array.size(); i++)
    {

@@ -4,20 +4,23 @@
 #include <stdio.h>
 #include <vector>
 
-//funcion prototypes
+//-------------PROTOTYPES-----------------
+//functions
 void randomizer(std::vector<int>& array, int n);
 void print(std::vector<int>& array);
+void swap(int &a, int &b);
+//algorithms
 void BubbleSort(std::vector<int>& array);
 void SelectionSort(std::vector<int>& array);
-void swap(int *xp, int *yp);
 
+//-------------MAIN-----------------
 int main()
 {
    std::vector<int> array;
 
    randomizer(array, 9);
    print(array);
-   SelectionSort(array);
+   BubbleSort(array);
    std::cout << "done" << std::endl;
    print(array);
 
@@ -29,7 +32,7 @@ void randomizer(std::vector<int>& array, int n)
 {
    srand(time(0)); //seed depends on current time
 
-   //randomiser
+   //puts random value into vector
    for(int i = 0; i < n; i++)
    {
       array.push_back(rand() % 10 + 1);
@@ -58,9 +61,7 @@ void BubbleSort(std::vector<int>& array) {
     j++;
     for (int i = 0; i < array.size() - j; ++i) {
       if (array[i] > array[i + 1]) {
-        temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
+        swap(array[i+1], array[i]);
         swapped = true;
       }
     }
@@ -68,29 +69,27 @@ void BubbleSort(std::vector<int>& array) {
 }
 
 //Selection Sort
-void SelectionSort(std::vector<int>& array)
-{
-   int min_ind;
+void SelectionSort(std::vector<int>& array) {
+   int imin;
 
-   for(int i = 0; i < array.size() - 1; i++)
-   {
-      //finding minimum value in unsorted vector
-      min_ind = i;
-      for(int j = i+1; j < array.size(); j++)
-      {
-         if(array[j] < array[min_ind])
-         {
-            min_ind = j;
-         }
-         //swap
-         swap(&array[min_ind], &array[i]);
-      }
+   for(int i = 0; i<array.size()-1; i++) {
+
+      imin = i;   //find index of smallest value in vector
+
+      for(int j = i+1; j<array.size(); j++)
+
+         if(array[j] < array[imin])
+
+            imin = j;
+
+         //placing in correct position by swapping
+         swap(array[i], array[imin]);
    }
 }
 
-void swap(int *xp, int *yp)
+void swap(int &a, int &b) //used to swap two values in a vector/array
 {
-   int temp = *xp;
-   *xp = *yp;
-   *yp = temp;
+   int temp = a;
+   a = b;
+   b = temp;
 }

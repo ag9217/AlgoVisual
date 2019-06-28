@@ -48,19 +48,6 @@ int main()
 
       window.display();
 
-      SelectionSort(array);
-
-      window.clear();
-
-      updateRectangles(rectangles, array, n);
-
-      for(int i = 0; i < n; i++)
-      {
-        window.draw(rectangles[i]);
-      }
-
-      window.display();
-
   }
 
   return 0;

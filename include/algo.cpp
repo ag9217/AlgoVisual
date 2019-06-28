@@ -1,5 +1,6 @@
 #include <vector>
 #include "algo.hpp"
+//this file contains all the algorithms used in this program
 //-------------ALGORITHMS-----------------
 //Bubble Sort
 void BubbleSort(std::vector<int>& array) {

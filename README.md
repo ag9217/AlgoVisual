@@ -11,7 +11,7 @@ This project requires SFML to function. To install SFML:
 sudo apt-get install libsfml-dev
 ```
 
-In order to compile the program, simply run the makefile in the `src` directory by typing `make`. To run the program, type `./algov`.
+In order to compile the program, simply run the makefile in the `src` directory by typing `make`. To then run the program, type `./algov`.
 
 ### Usage
 You can randomise the values by pressing `r` and pick between Bubble Sort `b` or Selection Sort `s`.

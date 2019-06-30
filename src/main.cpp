@@ -1,18 +1,24 @@
+//Have two different threads, one for rendering and one for algorithm, so we can use sleep commands
 //libraries
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 #include <vector>
+#include <thread>
 #include <SFML/Graphics.hpp>
 
 //Project header files
 #include "algo.hpp" //importing algorithms
 #include "extra.hpp" //self-written functions used on vectors
 
+//function prototypes
+void sort(int a, std::vector<int> &array);
+
 //-------------MAIN-----------------
 int main()
 {
   //variables
+  int a = 2;
   int n = 100; //length of array / number of rectangles drawn
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
@@ -31,24 +37,37 @@ int main()
 
   print(array);
 
+  std::thread th1(sort, std::ref(a), std::ref(array));
+
   while (window.isOpen())
   {
-      sf::Event event;
-      while (window.pollEvent(event))
-      {
-          if (event.type == sf::Event::Closed)
-              window.close();
-      }
-      window.clear();
 
-      for(int i = 0; i < n; i++)
-      {
-        window.draw(rectangles[i]);
-      }
+    updateRectangles(rectangles, array, n);
 
-      window.display();
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window.close();
+    }
+    window.clear();
+
+    for(int i = 0; i < n; i++)
+    {
+      window.draw(rectangles[i]);
+    }
+
+    window.display();
 
   }
 
   return 0;
+}
+
+void sort(int a, std::vector<int> &array)
+{
+  switch(a) {
+    case 1: BubbleSort(array);
+    case 2: SelectionSort(array);
+  }
 }

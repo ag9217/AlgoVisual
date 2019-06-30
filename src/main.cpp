@@ -15,15 +15,13 @@ extern const float height = 600;
 #include "algo.hpp" // algorithms
 #include "extra.hpp" //self-written functions used on vectors
 
-//function prototypes
-void sort(int a, std::vector<int> &array, std::vector<sf::RectangleShape> &rectangles);
-
 //-------------MAIN-----------------
 int main()
 {
   //variables
   int a = 2;
   int n = 500; //length of array / number of rectangles drawn
+  srand(time(0)); //seed depends on current time
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
   randomizer(array, n);
@@ -41,11 +39,10 @@ int main()
 
   print(array);
 
-  std::thread th1(sort, std::ref(a), std::ref(array), std::ref(rectangles));
+  std::thread th1;
 
   while (window.isOpen())
   {
-
     updateRectangles(rectangles, array, n);
 
     sf::Event event;
@@ -53,6 +50,27 @@ int main()
     {
         if (event.type == sf::Event::Closed)
             window.close();
+
+        if(event.type == sf::Event::KeyPressed)
+        {
+          if(event.key.code == sf::Keyboard::B)
+          {
+            a = 1;
+            th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles));
+          }
+
+          if(event.key.code == sf::Keyboard::S)
+          {
+            a = 2;
+            th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles));
+          }
+          if(event.key.code == sf::Keyboard::R)
+          {
+            std::cout << "hello" << std::endl;
+            randomizer(array, n);
+            updateRectangles(rectangles, array, n);
+          }
+        }
     }
     window.clear();
 
@@ -66,12 +84,4 @@ int main()
   }
 
   return 0;
-}
-
-void sort(int a, std::vector<int> &array, std::vector<sf::RectangleShape> &rectangles)
-{
-  switch(a) {
-    case 1: BubbleSort(array, rectangles);
-    case 2: SelectionSort(array, rectangles);
-  }
 }

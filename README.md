@@ -2,7 +2,7 @@
 Algorithm visualisation in C++ with SFML
 
 ### Side Note
-This program is mutli-threaded where one thread is rendering the graphics and the other sorting the random values. Implementing multiple threads was easy to implement, but difficult to work with.
+This program is mutli-threaded where one thread is rendering the graphics and the other sorting the random values. Implementing multiple threads was easy, but difficult to work with.
 
 ### Installation
 This project requires SFML to function. To install SFML:

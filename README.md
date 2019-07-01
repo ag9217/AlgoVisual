@@ -16,5 +16,7 @@ In order to compile the program, simply run the makefile in the `src` directory 
 ### Usage
 You can randomise the values by pressing `r` and pick between Bubble Sort `b` or Selection Sort `s`. While the program is sorting the array, the up and down keys can be used to increase and decrease the delay between steps respectively.
 
+Green indicates that two values were swapped in the array and red indicates no swap.
+
 ### Images
 ![alt text](https://i.imgur.com/LmtkkiJ.gif)

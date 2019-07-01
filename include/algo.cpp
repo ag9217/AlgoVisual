@@ -7,7 +7,7 @@
 using namespace std::literals::chrono_literals;
 //-------------ALGORITHMS-----------------
 //Bubble Sort
-void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles)
+void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay)
 {
 
   bool swapped = true;
@@ -27,15 +27,15 @@ void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectan
       if (array[i] > array[i + 1]) { 
         rectangles[i].setFillColor(sf::Color(0, 255, 0)); //change the two rectangles being swapped to green
         rectangles[i+1].setFillColor(sf::Color(0, 255, 0)); 
-        std::this_thread::sleep_for(0.0001s);
+        std::this_thread::sleep_for(delay);
         swap(array[i+1], array[i]); //swap the position of the values
-        std::this_thread::sleep_for(0.0001s);
+        std::this_thread::sleep_for(delay);
         swapped = true;
         continue;
       }
 
       rectangles[i].setFillColor(sf::Color(255, 0, 0)); //if there is no swap, make rectangle red
-      std::this_thread::sleep_for(0.0001s);
+      std::this_thread::sleep_for(delay);
     }
   }
 
@@ -46,7 +46,7 @@ void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectan
 }
 
 //Selection Sort
-void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles)
+void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay)
 {
    int imin;
 
@@ -65,21 +65,21 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
          if(array[j] < array[imin])
          {
             imin = j;
-            std::this_thread::sleep_for(0.001s);
+            std::this_thread::sleep_for(delay);
          }
 
          else
          {
           rectangles[j].setFillColor(sf::Color(255, 0, 0)); //change the two rectangles being swapped to green
           rectangles[imin].setFillColor(sf::Color(255, 0, 0));
-          std::this_thread::sleep_for(0.0001s); 
+          std::this_thread::sleep_for(delay); 
          }
        }
 
          //placing in correct position by swapping
          rectangles[i].setFillColor(sf::Color(0, 255, 0)); //change the two rectangles being swapped to green
          rectangles[imin].setFillColor(sf::Color(0, 255, 0)); 
-         std::this_thread::sleep_for(0.0001s);
+         std::this_thread::sleep_for(delay);
          swap(array[i], array[imin]);
    }
 

@@ -3,7 +3,7 @@
 
 //function prototypes
 void swap(int &a, int &b);
-void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles);
-void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles);
+void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay);
+void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay);
 
 #endif

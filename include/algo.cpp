@@ -54,7 +54,7 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
    {
 
       imin = i;   //find index of smallest value in vector
-      //std::this_thread::sleep_for(0.001s);
+      std::this_thread::sleep_for(delay);
 
       for(int j = i+1; j<array.size(); j++){
           for(int k = 0; k < array.size(); k++) //Setting every rectangle to white

@@ -54,30 +54,30 @@ int main()
         if (event.type == sf::Event::Closed)
             window.close();
 
-        if(event.type == sf::Event::KeyPressed)
+        if(event.type == sf::Event::KeyPressed) //if statement checking if certain buttons are pressed
         {
-          if(event.key.code == sf::Keyboard::B)
+          if(event.key.code == sf::Keyboard::B) //B was pressed
           {
             a = 1;
             th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
 
-          if(event.key.code == sf::Keyboard::S)
+          if(event.key.code == sf::Keyboard::S) //S was pressed
           {
             a = 2;
             th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
-          if(event.key.code == sf::Keyboard::R)
+          if(event.key.code == sf::Keyboard::R) //R was pressed
           {
             randomizer(array, n);
             updateRectangles(rectangles, array, n);
           }
-          if(event.key.code == sf::Keyboard::Up)
+          if(event.key.code == sf::Keyboard::Up) //Arrow key Up was pressed
           {
             std::cout << "delay increased" << std::endl;
             delay += 200us;
           }
-          if(event.key.code == sf::Keyboard::Down)
+          if(event.key.code == sf::Keyboard::Down) //Arrow key down was pressed
           {
             std::cout << "delay decreased" << std::endl;
             delay -= 200us;

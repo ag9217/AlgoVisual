@@ -14,6 +14,7 @@ using namespace std::literals::chrono_literals;
 extern const float width = 1800;
 extern const float height = 600;
 extern std::chrono::microseconds delay = 250us;
+
 //Project header files
 #include "algo.hpp" // algorithms
 #include "extra.hpp" //self-written functions used on vectors
@@ -52,7 +53,10 @@ int main()
     while (window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
+        {
+            print(array);
             window.close();
+        }
 
         if(event.type == sf::Event::KeyPressed) //if statement checking if certain buttons are pressed
         {
@@ -72,15 +76,51 @@ int main()
             randomizer(array, n);
             updateRectangles(rectangles, array, n);
           }
-          if(event.key.code == sf::Keyboard::Up) //Arrow key Up was pressed
+          if(event.key.code == sf::Keyboard::Up) //Up arrow key was pressed
           {
             std::cout << "delay increased" << std::endl;
             delay += 200us;
           }
-          if(event.key.code == sf::Keyboard::Down) //Arrow key down was pressed
+          if(event.key.code == sf::Keyboard::Down) //Down arrow key was pressed
           {
             std::cout << "delay decreased" << std::endl;
             delay -= 200us;
+          }
+          if(event.key.code == sf::Keyboard::Left) //Left arrow key was pressed
+          {
+            n--;
+            array.clear(); //Removes all entries in vector
+            rectangles.resize(n); //resize rectangles to new n value
+            randomizer(array, n);
+            updateRectangles(rectangles, array, n);
+
+            for(int i = 0; i < n; i++) //setting style for new rectangles
+              {
+                rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
+                rectangles[i].setFillColor(sf::Color(255, 255, 255));
+                rectangles[i].setOutlineThickness(-1.f);
+                rectangles[i].setOutlineColor(sf::Color(0, 0, 0));
+                rectangles[i].setOrigin(0.f, array[i]*10);
+                rectangles[i].setPosition(0+(width/float(n))*i,height);
+              }
+          }
+          if(event.key.code == sf::Keyboard::Right) //Right arrow key was pressed
+          {
+            n++;
+            array.clear();
+            rectangles.resize(n);
+            randomizer(array, n);
+            updateRectangles(rectangles, array, n);
+
+            for(int i = 0; i < n; i++) //setting style for new rectangles
+            {
+              rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
+              rectangles[i].setFillColor(sf::Color(255, 255, 255));
+              rectangles[i].setOutlineThickness(-1.f);
+              rectangles[i].setOutlineColor(sf::Color(0, 0, 0));
+              rectangles[i].setOrigin(0.f, array[i]*10);
+              rectangles[i].setPosition(0+(width/float(n))*i,height);
+            }
           }
         }
     }

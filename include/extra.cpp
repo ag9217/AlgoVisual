@@ -5,9 +5,10 @@
 #include <SFML/Graphics.hpp>
 #include "extra.hpp"
 #include "main.hpp"
+
 //this file contains functions that are used on the randoimised vectors
 //function that randomises and sets the size of the vector
-void randomizer(std::vector<int>& array, int n)
+void randomizer(std::vector<int> &array, int n)
 {
    if(array.size()) //if we just want to randomise the values in the vector, not add new ones
    {
@@ -26,7 +27,8 @@ void randomizer(std::vector<int>& array, int n)
    }
 }
 
-void print(std::vector<int>& array) //print array
+//function that prints the array of numbers
+void print(std::vector<int> &array)
 {
    std::cout << "[";
    for(int i = 0; i < array.size() - 2; i++)
@@ -37,7 +39,7 @@ void print(std::vector<int>& array) //print array
 }
 
 //update rectangle styles
-void updateRectangles(std::vector<sf::RectangleShape> &r, std::vector<int> &array, int &n)
+void updateRectangles(std::vector<sf::RectangleShape> &r, std::vector<int> &array, int n)
 {
    for(int i = 0; i < n; i++)
    {

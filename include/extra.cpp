@@ -11,12 +11,10 @@ void randomizer(std::vector<int>& array, int n)
 {
    if(array.size()) //if we just want to randomise the values in the vector, not add new ones
    {
-      std::cout << array.size() << std::endl;
       for(int i = 0; i < n; i++)
       {
          array[i] = rand() % 55 + 1;
       }
-      std::cout << array.size() << std::endl;
    }
    if(!array.size())
    {

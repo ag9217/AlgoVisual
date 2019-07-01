@@ -14,7 +14,7 @@ sudo apt-get install libsfml-dev
 In order to compile the program, simply run the makefile in the `src` directory by typing `make`. To then run the program, type `./algov`.
 
 ### Usage
-You can randomise the values by pressing `r` and pick between Bubble Sort `b` or Selection Sort `s`. While the program is sorting the array, the up and down keys can be used to increase and decrease the delay between steps respectively.
+You can randomise the values by pressing `r` and pick between Bubble Sort `b` or Selection Sort `s`. While the program is sorting the array, the up and down keys can be used to increase and decrease the delay between steps respectively. The left and right arrow keys can be used to change the size the array to be sorted.
 
 Green indicates that a swap intruction occured between the highlighted rectangles (their respective values in the randomised array were swapped) and red indicates no swap instruction.
 

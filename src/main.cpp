@@ -7,10 +7,13 @@
 #include <thread>
 #include <SFML/Graphics.hpp>
 
+//namespace
+using namespace std::literals::chrono_literals;
+
 //resolution of window
 extern const float width = 1800;
 extern const float height = 600;
-
+extern std::chrono::microseconds delay = 250us;
 //Project header files
 #include "algo.hpp" // algorithms
 #include "extra.hpp" //self-written functions used on vectors
@@ -20,7 +23,7 @@ int main()
 {
   //variables
   int a = 2;
-  int n = 500; //length of array / number of rectangles drawn
+  int n = 200; //length of array / number of rectangles drawn
   srand(time(0)); //seed depends on current time
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
@@ -56,19 +59,28 @@ int main()
           if(event.key.code == sf::Keyboard::B)
           {
             a = 1;
-            th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles));
+            th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
 
           if(event.key.code == sf::Keyboard::S)
           {
             a = 2;
-            th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles));
+            th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
           if(event.key.code == sf::Keyboard::R)
           {
-            std::cout << "hello" << std::endl;
             randomizer(array, n);
             updateRectangles(rectangles, array, n);
+          }
+          if(event.key.code == sf::Keyboard::Up)
+          {
+            std::cout << "delay increased" << std::endl;
+            delay += 200us;
+          }
+          if(event.key.code == sf::Keyboard::Down)
+          {
+            std::cout << "delay decreased" << std::endl;
+            delay -= 200us;
           }
         }
     }

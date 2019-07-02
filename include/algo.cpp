@@ -115,7 +115,8 @@ void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rect
                 std::this_thread::sleep_for(delay); 
                 swap(array[i], array[i + 1]);
                 std::this_thread::sleep_for(delay); 
-                swapped = true; 
+                swapped = true;
+                continue;
             }
             rectangles[i].setFillColor(sf::Color(255, 0, 0)); //if there is no swap, make rectangle red
             std::this_thread::sleep_for(delay); 
@@ -147,7 +148,8 @@ void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rect
                 std::this_thread::sleep_for(delay);
                 swap(array[i], array[i + 1]);
                 std::this_thread::sleep_for(delay); 
-                swapped = true; 
+                swapped = true;
+                continue;
             }
             rectangles[i].setFillColor(sf::Color(255, 0, 0)); //if there is no swap, make rectangle red
             std::this_thread::sleep_for(delay);  

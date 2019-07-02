@@ -18,5 +18,7 @@ You can randomise the values by pressing `r` and pick between Bubble Sort `b`,  
 
 Green indicates that a swap intruction occured between the highlighted rectangles (their respective values in the randomised array were swapped) and red indicates no swap instruction.
 
+There is a counter at the top left corner of the window counting the number of times the algorithms compares two values in the randomised vector.
+
 ### Images
 ![alt text](https://i.imgur.com/cLBzF4b.gif)

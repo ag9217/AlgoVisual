@@ -89,6 +89,81 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
     }
 }
 
+void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay) 
+{ 
+    bool swapped = true; 
+    int start = 0; 
+    int end = array.size() - 1; 
+  
+    while (swapped) { 
+        // reset the swapped flag on entering 
+        // the loop, because it might be true from 
+        // a previous iteration. 
+        swapped = false; 
+  
+        // loop from left to right same as 
+        // the bubble sort 
+        for (int i = start; i < end; ++i) {
+            std::this_thread::sleep_for(delay);
+            for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
+            {
+              rectangles[k].setFillColor(sf::Color(255, 255, 255));
+            } 
+            if (array[i] > array[i + 1]) {
+                rectangles[i].setFillColor(sf::Color(0, 255, 0)); //change the two rectangles being swapped to green
+                rectangles[i+1].setFillColor(sf::Color(0, 255, 0));
+                std::this_thread::sleep_for(delay); 
+                swap(array[i], array[i + 1]);
+                std::this_thread::sleep_for(delay); 
+                swapped = true; 
+            }
+            rectangles[i].setFillColor(sf::Color(255, 0, 0)); //if there is no swap, make rectangle red
+            std::this_thread::sleep_for(delay); 
+        } 
+  
+        // if nothing moved, then array is sorted. 
+        if (!swapped){
+          break;
+        }
+  
+        // otherwise, reset the swapped flag so that it 
+        // can be used in the next stage 
+        swapped = false; 
+  
+        // move the end point back by one, because 
+        // item at the end is in its rightful spot 
+        --end; 
+  
+        // from right to left, doing the 
+        // same comparison as in the previous stage 
+        for (int i = end - 1; i >= start; --i) {
+            for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
+            {
+              rectangles[k].setFillColor(sf::Color(255, 255, 255));
+            } 
+            if (array[i] > array[i + 1]) {
+                rectangles[i].setFillColor(sf::Color(0, 255, 0)); //change the two rectangles being swapped to green
+                rectangles[i+1].setFillColor(sf::Color(0, 255, 0));
+                std::this_thread::sleep_for(delay);
+                swap(array[i], array[i + 1]);
+                std::this_thread::sleep_for(delay); 
+                swapped = true; 
+            }
+            rectangles[i].setFillColor(sf::Color(255, 0, 0)); //if there is no swap, make rectangle red
+            std::this_thread::sleep_for(delay);  
+        } 
+  
+        // increase the starting point, because 
+        // the last stage would have moved the next 
+        // smallest number to its rightful spot. 
+        ++start; 
+    }
+    for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
+    {
+      rectangles[k].setFillColor(sf::Color(255, 255, 255));
+    } 
+} 
+
 void swap(int &a, int &b) //used to swap two values in a vector/array
 {
    int temp = a;

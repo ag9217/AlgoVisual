@@ -19,10 +19,9 @@ int main()
 {
   //resolution of window
   const float width = 1800;
-  const float height = 600;
+  const float height = 900;
 
   //variables
-  int a = 2;
   int n = 200; //length of array / number of rectangles drawn
   const int scale = 3; //scaling height of rectangles
   std::chrono::microseconds delay = 250us;
@@ -45,7 +44,7 @@ int main()
 
   print(array);
 
-  std::thread th1;
+  std::thread th1; //creating thread for sorting
 
   while (window.isOpen())
   {
@@ -64,14 +63,15 @@ int main()
         {
           if(event.key.code == sf::Keyboard::B) //B was pressed
           {
-            a = 1;
             th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
-
           if(event.key.code == sf::Keyboard::S) //S was pressed
           {
-            a = 2;
             th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles), std::ref(delay));
+          }
+          if(event.key.code == sf::Keyboard::C) //C was pressed
+          {
+            th1 = std::thread (CocktailSort, std::ref(array), std::ref(rectangles), std::ref(delay));
           }
           if(event.key.code == sf::Keyboard::R) //R was pressed
           {

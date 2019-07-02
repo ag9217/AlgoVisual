@@ -10,15 +10,15 @@
 //function that randomises and sets the size of the vector
 void randomizer(std::vector<int> &array, int n)
 {
-   std::vector<int> pushedValues;
-   int temp;
+   std::vector<int> pushedValues; //vector containg already pushed values
+   int temp; //temporary random value
 
    if(array.size()) //if we just want to randomise the values in the vector, not add new ones
    {
       for(int i = 0; i < n; i++)
       {
          temp = rand() % n + 1;
-         //checking if random number generated is already in vector
+         //checking if random number generated is already in pushedValues
          while(std::find(pushedValues.begin(), pushedValues.end(), temp) != pushedValues.end())
          {
             temp = rand() % n + 1;
@@ -27,7 +27,7 @@ void randomizer(std::vector<int> &array, int n)
          pushedValues.push_back(temp);
       }
    }
-   if(!array.size())
+   if(!array.size()) //if the vector is empty
    {
       //puts random value into vector
       for(int i = 0; i < n; i++)

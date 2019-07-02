@@ -7,7 +7,7 @@
 using namespace std::literals::chrono_literals;
 //-------------ALGORITHMS-----------------
 //Bubble Sort
-void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay)
+void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay, int &comparisons)
 {
 
   bool swapped = true;
@@ -18,6 +18,7 @@ void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectan
     swapped = false;
     j++;
     for (int i = 0; i < array.size() - j; ++i) {
+      comparisons++;
 
       for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
       {
@@ -46,17 +47,18 @@ void BubbleSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectan
 }
 
 //Selection Sort
-void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay)
+void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay, int &comparisons)
 {
    int imin;
 
    for(int i = 0; i<array.size()-1; i++)
    {
-
-      imin = i;   //find index of smallest value in vector
+      comparisons++;
+      imin = i;  //find index of smallest value in vector
       std::this_thread::sleep_for(delay);
 
       for(int j = i+1; j<array.size(); j++){
+          comparisons++;
           for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
           {
             rectangles[k].setFillColor(sf::Color(255, 255, 255));
@@ -64,7 +66,7 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
 
          if(array[j] < array[imin])
          {
-            imin = j;
+            imin = j; comparisons++;
             std::this_thread::sleep_for(delay);
          }
 
@@ -80,7 +82,7 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
          rectangles[i].setFillColor(sf::Color(0, 255, 0)); //change the two rectangles being swapped to green
          rectangles[imin].setFillColor(sf::Color(0, 255, 0)); 
          std::this_thread::sleep_for(delay);
-         swap(array[i], array[imin]);
+         swap(array[i], array[imin]); comparisons++;
    }
 
     for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
@@ -89,7 +91,7 @@ void SelectionSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rec
     }
 }
 
-void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay) 
+void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rectangles, std::chrono::microseconds &delay, int &comparisons) 
 { 
     bool swapped = true; 
     int start = 0; 
@@ -104,6 +106,7 @@ void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rect
         // loop from left to right same as 
         // the bubble sort 
         for (int i = start; i < end; ++i) {
+            comparisons++;
             std::this_thread::sleep_for(delay);
             for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
             {
@@ -123,9 +126,8 @@ void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rect
         } 
   
         // if nothing moved, then array is sorted. 
-        if (!swapped){
+        if (!swapped)
           break;
-        }
   
         // otherwise, reset the swapped flag so that it 
         // can be used in the next stage 
@@ -138,6 +140,7 @@ void CocktailSort(std::vector<int>& array, std::vector<sf::RectangleShape> &rect
         // from right to left, doing the 
         // same comparison as in the previous stage 
         for (int i = end - 1; i >= start; --i) {
+            comparisons++;
             for(int k = 0; k < array.size(); k++) //Setting every rectangle to white
             {
               rectangles[k].setFillColor(sf::Color(255, 255, 255));

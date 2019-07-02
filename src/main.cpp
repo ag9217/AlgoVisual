@@ -24,7 +24,8 @@ int main()
   //variables
   int n = 200; //length of array / number of rectangles drawn
   const int scale = 3; //scaling height of rectangles
-  std::chrono::microseconds delay = 500us;
+  int comparisons = 0; //counting the number of comparisons during sorting
+  std::chrono::microseconds delay = 750us;
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
 
@@ -42,6 +43,20 @@ int main()
     rectangles[i].setPosition(0+(width/float(n))*i,height);
   }
 
+  sf::Font font;
+  font.loadFromFile("../resources/Roboto-Regular.ttf");
+
+  sf::Text compareText;
+  compareText.setFont(font);
+  compareText.setCharacterSize(34);
+  compareText.setFillColor(sf::Color::Blue);
+
+  sf::Text compareInfo;
+  compareInfo.setFont(font);
+  compareInfo.setCharacterSize(34);
+  compareInfo.setFillColor(sf::Color::Blue);
+  compareInfo.setPosition(200.f, 0.f);
+
   print(array);
 
   std::thread th1; //creating thread for sorting
@@ -49,6 +64,8 @@ int main()
   while (window.isOpen())
   {
     updateRectangles(rectangles, array, n, width, height, scale);
+    compareInfo.setString(std::to_string(comparisons));
+    compareText.setString("Comparisons: ");
 
     sf::Event event;
     while (window.pollEvent(event))
@@ -63,15 +80,15 @@ int main()
         {
           if(event.key.code == sf::Keyboard::B) //B was pressed
           {
-            th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles), std::ref(delay));
+            th1 = std::thread (BubbleSort, std::ref(array), std::ref(rectangles), std::ref(delay), std::ref(comparisons));
           }
           if(event.key.code == sf::Keyboard::S) //S was pressed
           {
-            th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles), std::ref(delay));
+            th1 = std::thread (SelectionSort, std::ref(array), std::ref(rectangles), std::ref(delay), std::ref(comparisons));
           }
           if(event.key.code == sf::Keyboard::C) //C was pressed
           {
-            th1 = std::thread (CocktailSort, std::ref(array), std::ref(rectangles), std::ref(delay));
+            th1 = std::thread (CocktailSort, std::ref(array), std::ref(rectangles), std::ref(delay), std::ref(comparisons));
           }
           if(event.key.code == sf::Keyboard::R) //R was pressed
           {
@@ -81,12 +98,12 @@ int main()
           if(event.key.code == sf::Keyboard::Up) //Up arrow key was pressed
           {
             std::cout << "delay increased" << std::endl;
-            delay += 1000us;
+            delay += 500us;
           }
           if(event.key.code == sf::Keyboard::Down) //Down arrow key was pressed
           {
             std::cout << "delay decreased" << std::endl;
-            delay -= 1000us;
+            delay -= 500us;
           }
           if(event.key.code == sf::Keyboard::Left) //Left arrow key was pressed
           {
@@ -132,7 +149,8 @@ int main()
     {
       window.draw(rectangles[i]);
     }
-
+    window.draw(compareText);
+    window.draw(compareInfo);
     window.display();
 
   }

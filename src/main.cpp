@@ -55,7 +55,7 @@ int main()
   compareInfo.setFont(font);
   compareInfo.setCharacterSize(34);
   compareInfo.setFillColor(sf::Color::Blue);
-  compareInfo.setPosition(200.f, 0.f);
+  compareInfo.setPosition(220.f, 0.f);
 
   print(array);
 

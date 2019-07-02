@@ -10,11 +10,20 @@
 //function that randomises and sets the size of the vector
 void randomizer(std::vector<int> &array, int n)
 {
+   std::vector<int> pushedValues;
+   int temp;
+
    if(array.size()) //if we just want to randomise the values in the vector, not add new ones
    {
       for(int i = 0; i < n; i++)
       {
-         array[i] = rand() % 55 + 1;
+         temp = rand() % n + 1;
+         while(std::find(pushedValues.begin(), pushedValues.end(), temp) != pushedValues.end())
+         {
+            temp = rand() % n + 1;
+         }
+         array[i] = temp;
+         pushedValues.push_back(temp);
       }
    }
    if(!array.size())
@@ -22,7 +31,13 @@ void randomizer(std::vector<int> &array, int n)
       //puts random value into vector
       for(int i = 0; i < n; i++)
       {
-         array.push_back(rand() % 55 + 1);
+         temp = rand() % n + 1;
+         while(std::find(pushedValues.begin(), pushedValues.end(), temp) != pushedValues.end())
+         {
+            temp = rand() % n + 1;
+         }
+         pushedValues.push_back(temp);
+         array.push_back(temp);
       }
    }
 }
@@ -43,8 +58,8 @@ void updateRectangles(std::vector<sf::RectangleShape> &r, std::vector<int> &arra
 {
    for(int i = 0; i < n; i++)
    {
-      r[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
-      r[i].setOrigin(0.f, array[i]*10);
-      r[i].setPosition(0+(width/float(n))*i,600);
+      r[i].setSize(sf::Vector2f(width/float(n), array[i]*scale));
+      r[i].setOrigin(0.f, array[i]*scale);
+      r[i].setPosition(0+(width/float(n))*i,height);
    }
 }

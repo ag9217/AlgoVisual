@@ -13,7 +13,10 @@ using namespace std::literals::chrono_literals;
 //resolution of window
 extern const float width = 1800;
 extern const float height = 600;
+
+//global variables
 extern std::chrono::microseconds delay = 250us;
+extern const int scale = 4; //scaling height of rectangles
 
 //Project header files
 #include "algo.hpp" // algorithms
@@ -33,11 +36,11 @@ int main()
   sf::RenderWindow window(sf::VideoMode(width, height), "AlgoVisual");
   for(int i = 0; i < n; i++) //setting up initial rectangles and their style
   {
-    rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
+    rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*scale));
     rectangles[i].setFillColor(sf::Color(255, 255, 255));
     rectangles[i].setOutlineThickness(-1.f);
     rectangles[i].setOutlineColor(sf::Color(0, 0, 0));
-    rectangles[i].setOrigin(0.f, array[i]*10);
+    rectangles[i].setOrigin(0.f, array[i]*scale);
     rectangles[i].setPosition(0+(width/float(n))*i,height);
   }
 
@@ -96,11 +99,11 @@ int main()
 
             for(int i = 0; i < n; i++) //setting style for new rectangles
               {
-                rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
+                rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*scale));
                 rectangles[i].setFillColor(sf::Color(255, 255, 255));
                 rectangles[i].setOutlineThickness(-1.f);
                 rectangles[i].setOutlineColor(sf::Color(0, 0, 0));
-                rectangles[i].setOrigin(0.f, array[i]*10);
+                rectangles[i].setOrigin(0.f, array[i]*scale);
                 rectangles[i].setPosition(0+(width/float(n))*i,height);
               }
           }
@@ -114,11 +117,11 @@ int main()
 
             for(int i = 0; i < n; i++) //setting style for new rectangles
             {
-              rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*10));
+              rectangles[i].setSize(sf::Vector2f(width/float(n), array[i]*scale));
               rectangles[i].setFillColor(sf::Color(255, 255, 255));
               rectangles[i].setOutlineThickness(-1.f);
               rectangles[i].setOutlineColor(sf::Color(0, 0, 0));
-              rectangles[i].setOrigin(0.f, array[i]*10);
+              rectangles[i].setOrigin(0.f, array[i]*scale);
               rectangles[i].setPosition(0+(width/float(n))*i,height);
             }
           }

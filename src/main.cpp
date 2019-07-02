@@ -24,7 +24,7 @@ int main()
   //variables
   int n = 200; //length of array / number of rectangles drawn
   const int scale = 3; //scaling height of rectangles
-  std::chrono::microseconds delay = 100000us;
+  std::chrono::microseconds delay = 500us;
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
 

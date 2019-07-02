@@ -18,6 +18,7 @@ void randomizer(std::vector<int> &array, int n)
       for(int i = 0; i < n; i++)
       {
          temp = rand() % n + 1;
+         //checking if random number generated is already in vector
          while(std::find(pushedValues.begin(), pushedValues.end(), temp) != pushedValues.end())
          {
             temp = rand() % n + 1;
@@ -42,7 +43,7 @@ void randomizer(std::vector<int> &array, int n)
    }
 }
 
-//function that prints the array of numbers
+//function that prints the vector of numbers
 void print(std::vector<int> &array)
 {
    std::cout << "[";
@@ -54,7 +55,7 @@ void print(std::vector<int> &array)
 }
 
 //update rectangle styles
-void updateRectangles(std::vector<sf::RectangleShape> &r, std::vector<int> &array, int n)
+void updateRectangles(std::vector<sf::RectangleShape> &r, std::vector<int> &array, int n, float width, float height, int scale)
 {
    for(int i = 0; i < n; i++)
    {

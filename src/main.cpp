@@ -10,14 +10,6 @@
 //namespace
 using namespace std::literals::chrono_literals;
 
-//resolution of window
-extern const float width = 1800;
-extern const float height = 600;
-
-//global variables
-extern std::chrono::microseconds delay = 250us;
-extern const int scale = 4; //scaling height of rectangles
-
 //Project header files
 #include "algo.hpp" // algorithms
 #include "extra.hpp" //self-written functions used on vectors
@@ -25,13 +17,20 @@ extern const int scale = 4; //scaling height of rectangles
 //-------------MAIN-----------------
 int main()
 {
+  //resolution of window
+  const float width = 1800;
+  const float height = 600;
+
   //variables
   int a = 2;
   int n = 200; //length of array / number of rectangles drawn
-  srand(time(0)); //seed depends on current time
+  const int scale = 3; //scaling height of rectangles
+  std::chrono::microseconds delay = 250us;
   std::vector<int> array; //vector containing random values
   std::vector<sf::RectangleShape> rectangles(n); //vector containing rectangles
-  randomizer(array, n);
+
+  srand(time(0)); //seed depends on current time
+  randomizer(array, n); //randomise vector and set size equals to n
 
   sf::RenderWindow window(sf::VideoMode(width, height), "AlgoVisual");
   for(int i = 0; i < n; i++) //setting up initial rectangles and their style
@@ -50,7 +49,7 @@ int main()
 
   while (window.isOpen())
   {
-    updateRectangles(rectangles, array, n);
+    updateRectangles(rectangles, array, n, width, height, scale);
 
     sf::Event event;
     while (window.pollEvent(event))
@@ -77,7 +76,7 @@ int main()
           if(event.key.code == sf::Keyboard::R) //R was pressed
           {
             randomizer(array, n);
-            updateRectangles(rectangles, array, n);
+            updateRectangles(rectangles, array, n, width, height, scale);
           }
           if(event.key.code == sf::Keyboard::Up) //Up arrow key was pressed
           {
@@ -95,7 +94,7 @@ int main()
             array.clear(); //Removes all entries in vector
             rectangles.resize(n); //resize rectangles to new n value
             randomizer(array, n);
-            updateRectangles(rectangles, array, n);
+            updateRectangles(rectangles, array, n, width, height, scale);
 
             for(int i = 0; i < n; i++) //setting style for new rectangles
               {
@@ -113,7 +112,7 @@ int main()
             array.clear();
             rectangles.resize(n);
             randomizer(array, n);
-            updateRectangles(rectangles, array, n);
+            updateRectangles(rectangles, array, n, width, height, scale);
 
             for(int i = 0; i < n; i++) //setting style for new rectangles
             {

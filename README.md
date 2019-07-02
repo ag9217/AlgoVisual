@@ -19,4 +19,4 @@ You can randomise the values by pressing `r` and pick between Bubble Sort `b` or
 Green indicates that a swap intruction occured between the highlighted rectangles (their respective values in the randomised array were swapped) and red indicates no swap instruction.
 
 ### Images
-![alt text](https://i.imgur.com/LmtkkiJ.gif)
+![alt text](https://i.imgur.com/cLBzF4b.gif)

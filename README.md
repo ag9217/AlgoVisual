@@ -16,9 +16,9 @@ In order to compile the program, simply run the makefile in the `src` directory 
 ### Usage
 You can randomise the values by pressing `r` and pick between Bubble Sort `b`,  Selection Sort `s` or Cocktail Sort `c`. While the program is sorting the array, the up and down keys can be used to increase and decrease the delay between steps respectively. The left and right arrow keys can be used to change the size the array to be sorted.
 
-Green indicates that a swap intruction occured between the highlighted rectangles (their respective values in the randomised array were swapped) and red indicates no swap instruction.
+Green indicates that a swap intruction occured between the highlighted columns (their respective values in the randomised array were swapped) and red indicates no swap instruction.
 
-There is a counter at the top left corner of the window counting the number of times the algorithms compares two values in the randomised vector.
+There is a counter at the top left corner of the window counting the number of times the algorithms compares two values in the randomised vector (not shown in the gif below).
 
 ### Images
 ![alt text](https://i.imgur.com/cLBzF4b.gif)
